@@ -40,4 +40,10 @@ USER appuser
 
 EXPOSE 8000
 
+# Placeholders only - settings.py needs both at import time.
+# collectstatic never opens a DB connection, so these are never used.
+RUN SECRET_KEY=build-placeholder \
+      DATABASE_URL=postgres://build:build@localhost:5432/build \
+      python manage.py collectstatic --noinput
+
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "fitness_booking.wsgi:application"]

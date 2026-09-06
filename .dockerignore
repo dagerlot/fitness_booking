@@ -9,3 +9,5 @@ project_plan.md
 .git
 **/__pycache__
 .idea
+_static/
+notes/
