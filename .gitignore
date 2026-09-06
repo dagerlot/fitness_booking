@@ -1,4 +1,8 @@
 project_plan.md
-fitness_booking/.env
+.web_env
+.db_env
 .venv
 .idea
+__pycache__
+_static/
+notes/

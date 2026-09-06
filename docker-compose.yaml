@@ -1,0 +1,52 @@
+services:
+  db:
+    image: postgres:18
+    volumes:
+      - "dbdata:/var/lib/postgresql"
+    env_file: ".db_env"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build: .
+    env_file: ".web_env"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  nginx:
+    build:
+      context: ./deploy/nginx
+      additional_contexts:
+        web: "service:web"
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+
+  redis:
+    image: redis:8.10-alpine
+    volumes:
+      - "redisdata:/data"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  celery:
+    build: .
+    command: ["celery", "-A", "fitness_booking", "worker", "-l", "INFO"]
+    env_file: ".web_env"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  dbdata:
+  redisdata:

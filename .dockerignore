@@ -1,0 +1,13 @@
+.web_env.example
+.web_env
+.db_env.example
+.db_env
+.venv
+.gitignore
+.python-version
+project_plan.md
+.git
+**/__pycache__
+.idea
+_static/
+notes/
