@@ -11,3 +11,4 @@ project_plan.md
 .idea
 _static/
 notes/
+**.env

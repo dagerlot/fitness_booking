@@ -6,3 +6,4 @@ project_plan.md
 __pycache__
 _static/
 notes/
+**.env

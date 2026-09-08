@@ -14,7 +14,18 @@ dependencies = [
 [dependency-groups]
 dev = [
     "django-debug-toolbar>=7.1.1",
+    "pytest-django[django]>=4.14.0",
+    "selenium>=4.48.0",
 ]
 prod = [
     "gunicorn>=26.0.0",
+]
+
+[tool.pytest]
+DJANGO_SETTINGS_MODULE = "fitness_booking.settings"
+addopts = ["-ra", "--strict-markers", "--strict-config", "-m", "not e2e"]
+markers = ["e2e: Tests end to end", "smoke: smoke tests"]
+testpaths = [
+    "tests",
+    "fitness_booking/tests"
 ]
