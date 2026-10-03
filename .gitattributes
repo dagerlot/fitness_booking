@@ -1,0 +1,3 @@
+# Repozytorium i katalog roboczy trzymają LF, także na Windowsie - cały kod
+# wykonuje się w kontenerach Linuksa. text=auto pomija pliki binarne.
+* text=auto eol=lf
