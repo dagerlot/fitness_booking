@@ -1,6 +1,7 @@
 import pytest
 from selenium import webdriver
 
+
 @pytest.mark.e2e
 def test_functional():
     browser = webdriver.Firefox()

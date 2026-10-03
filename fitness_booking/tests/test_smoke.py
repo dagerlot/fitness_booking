@@ -1,6 +1,7 @@
 import pytest
 from django.test import TestCase
 
+
 @pytest.mark.smoke
 class SmokeTest(TestCase):
     def test_smoke(self):
